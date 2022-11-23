@@ -74,6 +74,7 @@
       }
     ],
     "react/display-name": "off",
+    "react/in-jsx-scoupe": "off",
     "react/no-deprecated": "error",
     "react/no-access-state-in-setstate": "error",
     "react/no-this-in-sfc": "error",

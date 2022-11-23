@@ -10,6 +10,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-void': ['error', { allowAsStatement: true }],
     'no-shadow': 'off',
+    'react/in-jsx-scoup': 'off',
   },
   overrides: [
     {
