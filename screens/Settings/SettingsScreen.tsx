@@ -1,11 +1,9 @@
 import { useNavigation } from '@react-navigation/native'
 import { useStore } from 'effector-react'
 import React from 'react'
-import { Button, Text } from 'react-native'
-import { MainLayout } from '../../components'
+import { Button } from 'react-native'
+import { DefaultText, MainLayout } from '../../components'
 import { $theme, switchTheme } from '../../models'
-
-type NavigationProp = CustomStackNavigationProp<'Details'>
 
 export const SettingsScreen = () => {
   const navigation = useNavigation<NavigationProp>()
@@ -18,7 +16,10 @@ export const SettingsScreen = () => {
 
   return (
     <MainLayout>
-      <Text>Settings screen</Text>
+      <DefaultText>
+        {console.log(theme)}
+        Settings screen
+      </DefaultText>
       <Button
         title='Go to Details'
         onPress={() => navigation.navigate('Details')}

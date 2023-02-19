@@ -11,3 +11,5 @@ declare type CustomStackNavigationProp<T extends keyof IRootStackParamList> =
 
 declare type CustomRouteProp<T extends keyof IRootStackParamList> =
   import('@react-navigation/native').RouteProp<IRootStackParamList, T>
+
+declare type NavigationProp = CustomStackNavigationProp<'Details'>

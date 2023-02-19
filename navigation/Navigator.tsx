@@ -4,9 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StatusBar, StyleSheet, View } from 'react-native'
 import { useStore } from 'effector-react'
-// import { Layout } from '../styles/containers'
 import { DetailsScreen, HomeScreen, SettingsScreen } from '../screens'
-import { palette } from '../utils/palette'
+import { paletteDark, paletteLight } from '../utils/palette'
 import { $theme } from '../models/theme'
 import { RootStackParamList } from './types'
 
@@ -15,30 +14,33 @@ const SettingsStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator<RootStackParamList>()
 
 const HomeStackScreen = () => {
-  const theme: 'light' | 'dark' = useStore($theme)
-
   return (
     <HomeStack.Navigator
+      defaultScreenOptions={{
+        contentStyle: { backgroundColor: '#000' },
+      }}
       screenOptions={{
-        headerStyle: styles(theme).header,
+        headerShown: false,
+        contentStyle: { backgroundColor: '#000000' },
       }}
     >
-      <HomeStack.Screen component={HomeScreen} name='Home1' />
+      <HomeStack.Screen component={HomeScreen} name='HomeSCREEN' />
       <HomeStack.Screen component={DetailsScreen} name='Details' />
     </HomeStack.Navigator>
   )
 }
 
 const SettingsStackScreen = () => {
-  const theme: 'light' | 'dark' = useStore($theme)
+  const theme = useStore($theme)
 
   return (
     <SettingsStack.Navigator
       screenOptions={{
-        headerStyle: styles(theme).header,
+        headerShown: false,
+        contentStyle: styles(theme).content,
       }}
     >
-      <SettingsStack.Screen component={SettingsScreen} name='Settings1' />
+      <SettingsStack.Screen component={SettingsScreen} name='Settings' />
       <SettingsStack.Screen component={DetailsScreen} name='Details' />
     </SettingsStack.Navigator>
   )
@@ -49,8 +51,20 @@ export const Navigator = () => {
 
   return (
     <NavigationContainer>
-      <View>
+      <View
+        style={{
+          backgroundColor:
+            theme === 'light'
+              ? paletteLight.APP_BACKGROUND
+              : paletteDark.APP_BACKGROUND,
+        }}
+      >
         <StatusBar
+          backgroundColor={
+            theme === 'light'
+              ? paletteLight.APP_BACKGROUND
+              : paletteDark.APP_BACKGROUND
+          }
           barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
           translucent
         />
@@ -72,9 +86,15 @@ export const Navigator = () => {
 const styles = (theme: 'light' | 'dark') =>
   StyleSheet.create({
     tabs: {
-      backgroundColor: palette(theme).KEYBOARD_BACKGROUND,
+      position: 'absolute',
+      borderRadius: 15,
+      borderTopWidth: 0,
+      backgroundColor:
+        theme === 'light'
+          ? paletteLight.KEYBOARD_BACKGROUND
+          : paletteDark.KEYBOARD_BACKGROUND,
     },
-    header: {
-      backgroundColor: palette(theme).KEYBOARD_BACKGROUND,
+    content: {
+      backgroundColor: '#000',
     },
   })

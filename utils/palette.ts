@@ -1,33 +1,23 @@
-import { Theme } from '../types/layouts'
-
-const paletteLight = {
+export const paletteLight = {
   PRIMARY_COLOR: '#228B22',
-  SECTION_BACKGROUND: '#FFFFF',
-  TEXT_COLOR: '#00000',
-  TEXT_READ_ONLY: '#7F7F7F',
-  TEXT_DISABLE: '#D6D6D6',
-  TEXT_LINK: '#037AFF',
+  SECTION_BACKGROUND: '#ffffff',
+  TEXT_COLOR: '#000000',
+  TEXT_READ_ONLY: '#7f7f7f',
+  TEXT_DISABLE: '#d6d6d6',
+  TEXT_LINK: '#037aff',
   OVERLAY: '#00000033',
-  APP_BACKGROUND: '#EBEBEB',
-  KEYBOARD_BACKGROUND: '#D3D7DE',
+  APP_BACKGROUND: '#ebebeb',
+  KEYBOARD_BACKGROUND: '#d3d7de',
 }
 
-const paletteDark = {
-  PRIMARY_COLOR: '#66AA68',
+export const paletteDark = {
+  PRIMARY_COLOR: '#66aa68',
   SECTION_BACKGROUND: '#363434',
-  TEXT_COLOR: '#FFFFFF',
-  TEXT_READ_ONLY: '#ADB0B2',
-  TEXT_DISABLE: '#5C6166',
-  TEXT_LINK: '#529EFF',
+  TEXT_COLOR: '#ffffff',
+  TEXT_READ_ONLY: '#adb0b2',
+  TEXT_DISABLE: '#5c6166',
+  TEXT_LINK: '#529eff',
   OVERLAY: '#00000099',
   APP_BACKGROUND: '#292929',
   KEYBOARD_BACKGROUND: '#202020',
-}
-
-export const palette = (theme: Theme) => {
-  if (theme === 'light') {
-    return paletteLight
-  } else {
-    return paletteDark
-  }
 }
