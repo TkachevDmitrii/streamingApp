@@ -4,47 +4,31 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { StatusBar, StyleSheet, View } from 'react-native'
 import { useStore } from 'effector-react'
-import { DetailsScreen, HomeScreen, SettingsScreen } from '../screens'
+import { Activity, DetailsScreen, HomeScreen, SettingsScreen } from '../screens'
 import { paletteDark, paletteLight } from '../utils/palette'
 import { $theme } from '../models/theme'
+import { vw } from '../utils/sizes'
 import { RootStackParamList } from './types'
 
 const HomeStack = createNativeStackNavigator()
 const SettingsStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator<RootStackParamList>()
 
-const HomeStackScreen = () => {
-  return (
-    <HomeStack.Navigator
-      defaultScreenOptions={{
-        contentStyle: { backgroundColor: '#000' },
-      }}
-      screenOptions={{
-        headerShown: false,
-        contentStyle: { backgroundColor: '#000000' },
-      }}
-    >
-      <HomeStack.Screen component={HomeScreen} name='HomeSCREEN' />
-      <HomeStack.Screen component={DetailsScreen} name='Details' />
-    </HomeStack.Navigator>
-  )
-}
+const HomeStackScreen = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen component={HomeScreen} name='HomeSCREEN' />
+    <HomeStack.Screen component={Activity} name='Activity' />
+    <HomeStack.Screen component={DetailsScreen} name='Details' />
+  </HomeStack.Navigator>
+)
 
-const SettingsStackScreen = () => {
-  const theme = useStore($theme)
-
-  return (
-    <SettingsStack.Navigator
-      screenOptions={{
-        headerShown: false,
-        contentStyle: styles(theme).content,
-      }}
-    >
-      <SettingsStack.Screen component={SettingsScreen} name='Settings' />
-      <SettingsStack.Screen component={DetailsScreen} name='Details' />
-    </SettingsStack.Navigator>
-  )
-}
+const SettingsStackScreen = () => (
+  <SettingsStack.Navigator>
+    <SettingsStack.Screen component={SettingsScreen} name='Settings' />
+    <HomeStack.Screen component={Activity} name='Activity' />
+    <SettingsStack.Screen component={DetailsScreen} name='Details' />
+  </SettingsStack.Navigator>
+)
 
 export const Navigator = () => {
   const theme: 'light' | 'dark' = useStore($theme)
@@ -55,14 +39,14 @@ export const Navigator = () => {
         style={{
           backgroundColor:
             theme === 'light'
-              ? paletteLight.APP_BACKGROUND
+              ? paletteDark.APP_BACKGROUND
               : paletteDark.APP_BACKGROUND,
         }}
       >
         <StatusBar
           backgroundColor={
             theme === 'light'
-              ? paletteLight.APP_BACKGROUND
+              ? paletteDark.APP_BACKGROUND
               : paletteDark.APP_BACKGROUND
           }
           barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
@@ -87,12 +71,16 @@ const styles = (theme: 'light' | 'dark') =>
   StyleSheet.create({
     tabs: {
       position: 'absolute',
-      borderRadius: 15,
+      borderRadius: vw(15),
       borderTopWidth: 0,
       backgroundColor:
         theme === 'light'
           ? paletteLight.KEYBOARD_BACKGROUND
           : paletteDark.KEYBOARD_BACKGROUND,
+    },
+    header: {
+      color: '#000',
+      backgroundColor: '#000',
     },
     content: {
       backgroundColor: '#000',

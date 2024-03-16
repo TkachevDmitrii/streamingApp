@@ -1,3 +1,6 @@
 export * from './Details'
 export * from './Settings'
 export * from './Home'
+export * from './Activity'
+export * from './Map'
+export * from './Friends'

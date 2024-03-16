@@ -4,6 +4,7 @@ import { DefaultText } from '../../components/DefaultText'
 
 const StyledLabel = styled(DefaultText)`
   font-size: 24;
+  background-color: black;
 `
 
 export const Label: React.FC<any> = ({ children }) => {

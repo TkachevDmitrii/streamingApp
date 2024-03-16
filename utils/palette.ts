@@ -1,5 +1,6 @@
 export const paletteLight = {
   PRIMARY_COLOR: '#228B22',
+  PRIMAY_SELECTED: '#64AD64',
   SECTION_BACKGROUND: '#ffffff',
   TEXT_COLOR: '#000000',
   TEXT_READ_ONLY: '#7f7f7f',
@@ -12,6 +13,7 @@ export const paletteLight = {
 
 export const paletteDark = {
   PRIMARY_COLOR: '#66aa68',
+  PRIMAY_SELECTED: '#93C395',
   SECTION_BACKGROUND: '#363434',
   TEXT_COLOR: '#ffffff',
   TEXT_READ_ONLY: '#adb0b2',
